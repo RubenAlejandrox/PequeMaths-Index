@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Suma Saltarina - PequeMATHS</title>
+  <!-- Fuentes -->
+  <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Comic+Neue:wght@400;700&family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    :root {
+      --azul-cielo: #4FC3F7;
+      --amarillo-suave: #FFF176;
+      --verde-menta: #81C784;
+      --coral-suave: #FF8A65;
+      --blanco: #FFFFFF;
+      --gris-oscuro: #424242;
+      --gris-claro: #f5f5f5;
+      --morado-suave: #9575CD;
+      --rosa-suave: #F48FB1;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Comic Neue', 'Quicksand', Arial, sans-serif;
+      color: var(--gris-oscuro);
+      line-height: 1.6;
+      background-color: var(--blanco);
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: linear-gradient(180deg, #E3F2FD 0%, #BBDEFB 100%);
+    }
+    
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      position: relative;
+    }
+    
+    /* Header */
+    header {
+      background: linear-gradient(135deg, var(--azul-cielo) 0%, #2196F3 100%);
+      padding: 15px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    }
+    
+    .header-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+    
+    .logo-text {
+      font-family: 'Bubblegum Sans', cursive;
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-shadow: 2px 2px 0 rgba(0,0,0,0.1);
+      letter-spacing: 1px;
+    }
+    
+    .logo-text span:first-child {
+      color: var(--amarillo-suave);
+    }
+    
+    .logo-text span:last-child {
+      color: var(--blanco);
+    }
+    
+    /* Main Content */
+    main {
+      flex: 1;
+      padding: 40px 0;
+      position: relative;
+    }
+    
+    /* Game Container */
+    .game-container {
+      max-width: 900px;
+      margin: 0 auto;
+      background-color: var(--blanco);
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      position: relative;
+      z-index: 2;
+      animation: fadeInUp 1s;
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .game-header {
+      background: linear-gradient(135deg, var(--morado-suave) 0%, #7E57C2 100%);
+      padding: 30px 20px;
+      text-align: center;
+      color: var(--blanco);
+    }
+    
+    .game-header h1 {
+      font-family: 'Bubblegum Sans', cursive;
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 0 rgba(0,0,0,0.1);
+    }
+    
+    .game-header p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .game-content {
+      padding: 40px 30px;
+      position: relative;
+      min-height: 500px;
+    }
+    
+    /* Game Score */
+    .game-score {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 30px;
+      background-color: var(--gris-claro);
+      padding: 15px 20px;
+      border-radius: 50px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    }
+    
+    .score-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .score-label {
+      font-family: 'Bubblegum Sans', cursive;
+      font-size: 1.2rem;
+    }
+    
+    .score-value {
+      font-family: 'Bubblegum Sans', cursive;
+      font-size: 1.5rem;
+      color: var(--morado-suave);
+    }
+    
+    /* Game Scene */
+    .game-scene {
+      position: relative;
+      height: 350px;
+      background: linear-gradient(180deg, #E3F2FD 0%, #BBDEFB 100%);
+      border-radius: 15px;
+      overflow: hidden;
+      margin-bottom: 30px;
+    }
+    
+    /* Character */
+    .character {
+      position: absolute;
+      bottom: 150px;
+      left: 50px;
+      font-size: 3.5rem;
+      z-index: 10;
+      transition: all 0.5s ease-in-out;
+    }
+    
+    .character.jump {
+      animation: jump 1s ease-in-out;
+    }
+    
+    @keyframes jump {
+      0% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-50px);
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+    
+    /* Clouds */
+    .clouds-container {
+      position: absolute;
+      bottom: 50px;
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      z-index: 5;
+    }
+    
+    .cloud {
+      background-color: var(--blanco);
+      border-radius: 30px;
+      padding: 20px 30px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: all 0.3s;
+      text-align: center;
+      min-width: 120px;
+    }
+    
+    .cloud:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+    
+    .cloud-number {
+      font-family: 'Bubblegum Sans', cursive;
+      font-size: 2.2rem;
+      color: var(--gris-oscuro);
+    }
+    
+    /* Operation */
+    .operation {
+      position: absolute;
+      top: 30px;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      z-index: 20;
+    }
+    
+    .operation-text {
+      font-family: 'Bubblegum Sans', cursive;
+      font-size: 3rem;
+      color: var(--gris-oscuro);
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 10px 30px;
+      border-radius: 20px;
+      display: inline-block;
+    }
+    
+    /* Game Controls */
+    .game-controls {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+    
+    .btn {
+      display: inline-block;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 50px;
+      font-family: 'Bubblegum Sans', cursive;
+      font-size: 1.2rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, var(--coral-suave) 0%, #FF7043 100%);
+      color: var(--blanco);
+      box-shadow: 0 5px 15px rgba(255, 138, 101, 0.3);
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(255, 138, 101, 0.4);
+    }
+    
+    .btn-secondary {
+      background: linear-gradient(135deg, var(--azul-cielo) 0%, #29B6F6 100%);
+      color: var(--blanco);
+      box-shadow: 0 5px 15px rgba(79, 195, 247, 0.3);
+    }
+    
+    .btn-secondary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(79, 195, 247, 0.4);
+    }
+    
+    /* Game Feedback */
+    .game-feedback {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s;
+    }
+    
+    .game-feedback.show {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .feedback-content {
+      background-color: var(--blanco);
+      border-radius: 20px;
+      padding: 40px;
+      text-align: center;
+      max-width: 400px;
+      width: 90%;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      transform: scale(0.8);
+      transition: transform 0.3s;
+    }
+    
+    .game-feedback.show .feedback-content {
+      transform: scale(1);
+    }
+    
+    .feedback-icon {
+      font-size: 5rem;
+      margin-bottom: 20px;
+    }
+    
+    .feedback-icon.success {
+      color: var(--verde-menta);
+    }
+    
+    .feedback-icon.error {
+      color: var(--coral-suave);
+    }
+    
+    .feedback-text {
+      font-family: 'Bubblegum Sans', cursive;
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+    
+    .feedback-btn {
+      background: linear-gradient(135deg, var(--azul-cielo) 0%, #29B6F6 100%);
+      color: var(--blanco);
+      border: none;
+      border-radius: 50px;
+      padding: 12px 25px;
+      font-family: 'Bubblegum Sans', cursive;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .feedback-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(79, 195, 247, 0.3);
+    }
+    
+    /* Level Complete */
+    .level-complete {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s;
+    }
+    
+    .level-complete.show {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .level-complete-content {
+      background-color: var(--blanco);
+      border-radius: 20px;
+      padding: 40px;
+      text-align: center;
+      max-width: 500px;
+      width: 90%;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      transform: scale(0.8);
+      transition: transform 0.3s;
+    }
+    
+    .level-complete.show .level-complete-content {
+      transform: scale(1);
+    }
+    
+    .level-complete-icon {
+      font-size: 5rem;
+      color: var(--amarillo-suave);
+      margin-bottom: 20px;
+      animation: rotate 2s infinite linear;
+    }
+    
+    @keyframes rotate {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+    
+    .level-complete-title {
+      font-family: 'Bubblegum Sans', cursive;
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: var(--morado-suave);
+    }
+    
+    .level-complete-text {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+    
+    .level-complete-stats {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 30px;
+    }
+    
+    .level-complete-stat {
+      text-align: center;
+    }
+    
+    .stat-value {
+      font-family: 'Bubblegum Sans', cursive;
+      font-size: 2.5rem;
+      color: var(--azul-cielo);
+    }
+    
+    .stat-label {
+      font-size: 1rem;
+      color: var(--gris-oscuro);
+    }
+    
+    .level-complete-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+    
+    /* Decorative Elements */
+    .sun {
+      position: absolute;
+      top: 30px;
+      right: 50px;
+      font-size: 5rem;
+      color: var(--amarillo-suave);
+      animation: rotate 20s infinite linear;
+      z-index: 1;
+    }
+    
+    .bird {
+      position: absolute;
+      font-size: 1.5rem;
+      color: var(--gris-oscuro);
+      animation: fly 15s infinite linear;
+      z-index: 1;
+    }
+    
+    .bird-1 {
+      top: 80px;
+      left: -30px;
+      animation-duration: 20s;
+    }
+    
+    .bird-2 {
+      top: 150px;
+      left: -50px;
+      animation-duration: 25s;
+      animation-delay: 5s;
+    }
+    
+    @keyframes fly {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(calc(100vw + 50px));
+      }
+    }
+    
+    /* Footer */
+    footer {
+      background: linear-gradient(135deg, var(--azul-cielo) 0%, #2196F3 100%);
+      color: var(--blanco);
+      padding: 20px 0;
+      text-align: center;
+      font-size: 1rem;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .logo-text {
+        font-size: 2rem;
+      }
+      
+      .game-header h1 {
+        font-size: 2rem;
+      }
+      
+      .operation-text {
+        font-size: 2.5rem;
+      }
+      
+      .cloud-number {
+        font-size: 1.8rem;
+      }
+      
+      .character {
+        font-size: 3rem;
+      }
+      
+      .game-scene {
+        height: 300px;
+      }
+      
+      .clouds-container {
+        bottom: 40px;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .game-content {
+        padding: 30px 15px;
+      }
+      
+      .game-header h1 {
+        font-size: 1.7rem;
+      }
+      
+      .operation-text {
+        font-size: 2rem;
+      }
+      
+      .cloud-number {
+        font-size: 1.5rem;
+      }
+      
+      .character {
+        font-size: 2.5rem;
+        bottom: 120px;
+      }
+      
+      .game-scene {
+        height: 250px;
+      }
+      
+      .clouds-container {
+        bottom: 30px;
+      }
+      
+      .cloud {
+        padding: 15px 20px;
+        min-width: 90px;
+      }
+      
+      .btn {
+        padding: 10px 20px;
+        font-size: 1rem;
+      }
+      
+      .game-controls {
+        flex-direction: column;
+        gap: 10px;
+      }
+      
+      .level-complete-stats {
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .level-complete-buttons {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header simplificado (solo logo) -->
+  <header>
+    <div class="container header-container">
+      <div class="logo">
+        <a href="index.html">
+          <div class="logo-text">
+            <span>Peque</span><span>MATHS</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </header>
+  
+  <!-- Main Content -->
+  <main>
+    <div class="container">
+      <div class="game-container">
+        <div class="game-header">
+          <h1><i class="fa-solid fa-plus"></i> Suma Saltarina</h1>
+          <p>¡Ayuda al personaje a saltar sobre la nube con la respuesta correcta!</p>
+        </div>
+        
+        <div class="game-content">
+          <div class="game-score">
+            <div class="score-item">
+              <span class="score-label">Aciertos:</span>
+              <span class="score-value" id="correct-score">0</span>
+            </div>
+            <div class="score-item">
+              <span class="score-label">Nivel:</span>
+              <span class="score-value" id="level-score">1</span>
+            </div>
+            <div class="score-item">
+              <span class="score-label">Intentos:</span>
+              <span class="score-value" id="attempts-score">0</span>
+            </div>
+          </div>
+          
+          <div class="game-scene">
+            <!-- Sol decorativo -->
+            <div class="sun">☀️</div>
+            
+            <!-- Pájaros decorativos -->
+            <div class="bird bird-1">🐦</div>
+            <div class="bird bird-2">🐦</div>
+            
+            <!-- Operación -->
+            <div class="operation">
+              <div class="operation-text" id="operation">3 + 2 = ?</div>
+            </div>
+            
+            <!-- Personaje -->
+            <div class="character" id="character">🦸‍♂️</div>
+            
+            <!-- Nubes con respuestas -->
+            <div class="clouds-container" id="clouds-container">
+              <!-- Las nubes se generarán dinámicamente con JavaScript -->
+            </div>
+          </div>
+          
+          <div class="game-controls">
+            <button class="btn btn-primary" id="new-game-btn">
+              <i class="fa-solid fa-rotate"></i> Nuevo Juego
+            </button>
+            <button class="btn btn-secondary" id="hint-btn">
+              <i class="fa-solid fa-lightbulb"></i> Pista
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Feedback Modal -->
+    <div class="game-feedback" id="feedback-modal">
+      <div class="feedback-content">
+        <div class="feedback-icon success" id="feedback-icon">
+          <i class="fa-solid fa-face-smile-beam"></i>
+        </div>
+        <h2 class="feedback-text" id="feedback-text">¡Muy bien!</h2>
+        <button class="feedback-btn" id="feedback-btn">Continuar</button>
+      </div>
+    </div>
+    
+    <!-- Level Complete Modal -->
+    <div class="level-complete" id="level-complete-modal">
+      <div class="level-complete-content">
+        <div class="level-complete-icon">
+          <i class="fa-solid fa-star"></i>
+        </div>
+        <h2 class="level-complete-title">¡Nivel Completado!</h2>
+        <p class="level-complete-text">¡Felicidades! Has completado el nivel con éxito.</p>
+        
+        <div class="level-complete-stats">
+          <div class="level-complete-stat">
+            <div class="stat-value" id="final-correct">0</div>
+            <div class="stat-label">Aciertos</div>
+          </div>
+          <div class="level-complete-stat">
+            <div class="stat-value" id="final-level">1</div>
+            <div class="stat-label">Nivel</div>
+          </div>
+          <div class="level-complete-stat">
+            <div class="stat-value" id="final-attempts">0</div>
+            <div class="stat-label">Intentos</div>
+          </div>
+        </div>
+        
+        <div class="level-complete-buttons">
+          <button class="btn btn-primary" id="next-level-btn">
+            <i class="fa-solid fa-forward"></i> Siguiente Nivel
+          </button>
+          <button class="btn btn-secondary" id="restart-btn">
+            <i class="fa-solid fa-rotate"></i> Reiniciar
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 PequeMATHS – Todos los derechos reservados</p>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // Elementos del DOM
+    const character = document.getElementById('character');
+    const cloudsContainer = document.getElementById('clouds-container');
+    const operationElement = document.getElementById('operation');
+    const newGameBtn = document.getElementById('new-game-btn');
+    const hintBtn = document.getElementById('hint-btn');
+    const feedbackModal = document.getElementById('feedback-modal');
+    const feedbackIcon = document.getElementById('feedback-icon');
+    const feedbackText = document.getElementById('feedback-text');
+    const feedbackBtn = document.getElementById('feedback-btn');
+    const levelCompleteModal = document.getElementById('level-complete-modal');
+    const nextLevelBtn = document.getElementById('next-level-btn');
+    const restartBtn = document.getElementById('restart-btn');
+    const correctScoreElement = document.getElementById('correct-score');
+    const levelScoreElement = document.getElementById('level-score');
+    const attemptsScoreElement = document.getElementById('attempts-score');
+    const finalCorrectElement = document.getElementById('final-correct');
+    const finalLevelElement = document.getElementById('final-level');
+    const finalAttemptsElement = document.getElementById('final-attempts');
+    
+    // Variables del juego
+    let correctAnswer = 0;
+    let correctScore = 0;
+    let attemptsScore = 0;
+    let currentLevel = 1;
+    let maxLevel = 5;
+    let operationsPerLevel = 5;
+    let currentOperation = 0;
+    let characterPosition = 0;
+    let gameActive = true;
+    
+    // Personajes disponibles
+    const characters = ['🦸‍♂️', '🧚‍♀️', '🧙‍♂️', '🦊', '🐱', '🐶', '🐰', '🐼', '🐵', '🦁'];
+    
+    // Iniciar el juego cuando la página cargue
+    window.addEventListener('DOMContentLoaded', () => {
+      startNewGame();
+      
+      // Event listeners
+      newGameBtn.addEventListener('click', startNewGame);
+      hintBtn.addEventListener('click', showHint);
+      feedbackBtn.addEventListener('click', () => {
+        feedbackModal.classList.remove('show');
+        if (gameActive) {
+          generateOperation();
+        }
+      });
+      nextLevelBtn.addEventListener('click', () => {
+        levelCompleteModal.classList.remove('show');
+        currentLevel++;
+        if (currentLevel > maxLevel) {
+          currentLevel = 1;
+        }
+        startNewGame();
+      });
+      restartBtn.addEventListener('click', () => {
+        levelCompleteModal.classList.remove('show');
+        startNewGame();
+      });
+    });
+    
+    // Función para iniciar un nuevo juego
+    function startNewGame() {
+      // Reiniciar variables
+      correctScore = 0;
+      attemptsScore = 0;
+      currentOperation = 0;
+      characterPosition = 0;
+      gameActive = true;
+      
+      // Actualizar puntuación
+      correctScoreElement.textContent = correctScore;
+      levelScoreElement.textContent = currentLevel;
+      attemptsScoreElement.textContent = attemptsScore;
+      
+      // Seleccionar un personaje aleatorio
+      const randomCharacterIndex = Math.floor(Math.random() * characters.length);
+      character.textContent = characters[randomCharacterIndex];
+      
+      // Posicionar el personaje
+      character.style.left = '50px';
+      
+      // Generar la primera operación
+      generateOperation();
+    }
+    
+    // Función para generar una operación
+    function generateOperation() {
+      // Limpiar el contenedor de nubes
+      cloudsContainer.innerHTML = '';
+      
+      // Generar dos números aleatorios según el nivel
+      let maxNumber = 10;
+      if (currentLevel === 2) maxNumber = 15;
+      if (currentLevel >= 3) maxNumber = 20;
+      
+      const num1 = Math.floor(Math.random() * maxNumber) + 1;
+      const num2 = Math.floor(Math.random() * maxNumber) + 1;
+      
+      // Calcular la respuesta correcta
+      correctAnswer = num1 + num2;
+      
+      // Mostrar la operación
+      operationElement.textContent = `${num1} + ${num2} = ?`;
+      
+      // Generar respuestas (una correcta y dos incorrectas)
+      const answers = generateAnswers(correctAnswer, maxNumber);
+      
+      // Crear las nubes con las respuestas
+      answers.forEach((answer, index) => {
+        const cloud = createCloud(answer);
+        cloudsContainer.appendChild(cloud);
+      });
+    }
+    
+    // Función para generar respuestas (una correcta y dos incorrectas)
+    function generateAnswers(correctAnswer, maxNumber) {
+      const answers = [correctAnswer];
+      
+      // Generar dos respuestas incorrectas
+      while (answers.length < 3) {
+        const incorrectAnswer = Math.floor(Math.random() * (maxNumber * 2)) + 1;
+        if (!answers.includes(incorrectAnswer) && Math.abs(incorrectAnswer - correctAnswer) > 1) {
+          answers.push(incorrectAnswer);
+        }
+      }
+      
+      // Mezclar las respuestas
+      return shuffleArray(answers);
+    }
+    
+    // Función para mezclar un array
+    function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    }
+    
+    // Función para crear una nube
+    function createCloud(answer) {
+      const cloud = document.createElement('div');
+      cloud.className = 'cloud';
+      cloud.dataset.answer = answer;
+      
+      const cloudNumber = document.createElement('div');
+      cloudNumber.className = 'cloud-number';
+      cloudNumber.textContent = answer;
+      
+      cloud.appendChild(cloudNumber);
+      
+      // Añadir evento de clic
+      cloud.addEventListener('click', () => handleCloudClick(cloud));
+      
+      return cloud;
+    }
+    
+    // Función para manejar el clic en una nube
+    function handleCloudClick(cloud) {
+      if (!gameActive) return;
+      
+      const selectedAnswer = parseInt(cloud.dataset.answer);
+      attemptsScore++;
+      attemptsScoreElement.textContent = attemptsScore;
+      
+      if (selectedAnswer === correctAnswer) {
+        // Respuesta correcta
+        correctScore++;
+        correctScoreElement.textContent = correctScore;
+        
+        // Animar el salto del personaje
+        character.classList.add('jump');
+        
+        // Mover el personaje a la nube seleccionada
+        const cloudRect = cloud.getBoundingClientRect();
+        const sceneRect = document.querySelector('.game-scene').getBoundingClientRect();
+        const newPosition = cloudRect.left - sceneRect.left + (cloudRect.width / 2) - 20;
+        
+        setTimeout(() => {
+          character.style.left = `${newPosition}px`;
+          character.classList.remove('jump');
+        }, 500);
+        
+        // Mostrar retroalimentación
+        showFeedback(true);
+        
+        // Verificar si se completó el nivel
+        currentOperation++;
+        if (currentOperation >= operationsPerLevel) {
+          gameActive = false;
+          setTimeout(() => {
+            showLevelComplete();
+          }, 1500);
+        }
+      } else {
+        // Respuesta incorrecta
+        showFeedback(false);
+      }
+    }
+    
+    // Función para mostrar retroalimentación
+    function showFeedback(isCorrect) {
+      if (isCorrect) {
+        feedbackIcon.className = 'feedback-icon success';
+        feedbackIcon.innerHTML = '<i class="fa-solid fa-face-smile-beam"></i>';
+        feedbackText.textContent = '¡Muy bien! ¡Respuesta correcta!';
+      } else {
+        feedbackIcon.className = 'feedback-icon error';
+        feedbackIcon.innerHTML = '<i class="fa-solid fa-face-sad-tear"></i>';
+        feedbackText.textContent = 'Ups, esa no es la respuesta. ¡Inténtalo de nuevo!';
+      }
+      
+      feedbackModal.classList.add('show');
+    }
+    
+    // Función para mostrar el modal de nivel completado
+    function showLevelComplete() {
+      finalCorrectElement.textContent = correctScore;
+      finalLevelElement.textContent = currentLevel;
+      finalAttemptsElement.textContent = attemptsScore;
+      
+      levelCompleteModal.classList.add('show');
+    }
+    
+    // Función para mostrar una pista
+    function showHint() {
+      // Resaltar brevemente la nube correcta
+      const clouds = document.querySelectorAll('.cloud');
+      
+      clouds.forEach(cloud => {
+        if (parseInt(cloud.dataset.answer) === correctAnswer) {
+          cloud.style.boxShadow = '0 0 20px var(--verde-menta)';
+          
+          setTimeout(() => {
+            cloud.style.boxShadow = '';
+          }, 1000);
+        }
+      });
+    }
+  </script>
+</body>
+</html>
