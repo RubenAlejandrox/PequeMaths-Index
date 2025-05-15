@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo de Juegos - PequeMATHS</title>
+  <!-- Fuentes -->
+  <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Comic+Neue:wght@400;700&family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    :root {
+      --azul-cielo: #4FC3F7;
+      --amarillo-suave: #FFF176;
+      --verde-menta: #81C784;
+      --coral-suave: #FF8A65;
+      --blanco: #FFFFFF;
+      --gris-oscuro: #424242;
+      --gris-claro: #f5f5f5;
+      --morado-suave: #9575CD;
+      --rosa-suave: #F48FB1;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Comic Neue', 'Quicksand', Arial, sans-serif;
+      color: var(--gris-oscuro);
+      line-height: 1.6;
+      background-color: var(--blanco);
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: url('https://via.placeholder.com/100x100/E3F2FD/E3F2FD?text=') center/30px;
+    }
+    
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      position: relative;
+    }
+    
+    /* Elementos decorativos flotantes */
+    .floating {
+      position: absolute;
+      z-index: 1;
+      animation: float 6s ease-in-out infinite;
+      font-size: 2rem;
+      color: rgba(79, 195, 247, 0.3);
+    }
+    
+    .floating-1 {
+      top: 10%;
+      left: 5%;
+      animation-delay: 0s;
+    }
+    
+    .floating-2 {
+      top: 20%;
+      right: 10%;
+      animation-delay: 1s;
+      color: rgba(255, 241, 118, 0.3);
+    }
+    
+    .floating-3 {
+      bottom: 15%;
+      left: 15%;
+      animation-delay: 2s;
+      color: rgba(129, 199, 132, 0.3);
+    }
+    
+    .floating-4 {
+      bottom: 25%;
+      right: 5%;
+      animation-delay: 3s;
+      color: rgba(255, 138, 101, 0.3);
+    }
+    
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-20px) rotate(5deg);
+      }
+    }
+    
+    /* Header */
+    header {
+      background: linear-gradient(135deg, var(--azul-cielo) 0%, #2196F3 100%);
+      padding: 15px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    }
+    
+    .header-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+    
+    .logo-text {
+      font-family: 'Bubblegum Sans', cursive;
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-shadow: 2px 2px 0 rgba(0,0,0,0.1);
+      letter-spacing: 1px;
+    }
+    
+    .logo-text span:first-child {
+      color: var(--amarillo-suave);
+    }
+    
+    .logo-text span:last-child {
+      color: var(--blanco);
+    }
+    
+    /* Main Content */
+    main {
+      flex: 1;
+      padding: 40px 0;
+      position: relative;
+    }
+    
+    /* Catalog Container */
+    .catalog-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background-color: var(--blanco);
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      position: relative;
+      z-index: 2;
+      animation: fadeInUp 1s;
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .catalog-header {
+      background: linear-gradient(135deg, var(--azul-cielo) 0%, #2196F3 100%);
+      padding: 30px 20px;
+      text-align: center;
+      color: var(--blanco);
+    }
+    
+    .catalog-header h1 {
+      font-family: 'Bubblegum Sans', cursive;
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 0 rgba(0,0,0,0.1);
+    }
+    
+    .catalog-header p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .catalog-content {
+      padding: 40px 30px;
+    }
+    
+    /* Filter Tabs */
+    .filter-tabs {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    
+    .filter-tab {
+      padding: 10px 20px;
+      background-color: var(--gris-claro);
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-family: 'Bubblegum Sans', cursive;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .filter-tab:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .filter-tab.active {
+      background-color: var(--azul-cielo);
+      color: var(--blanco);
+      box-shadow: 0 5px 15px rgba(79, 195, 247, 0.3);
+    }
+    
+    /* Game Cards */
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 30px;
+    }
+    
+    .game-card {
+      background-color: var(--blanco);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    
+    .game-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    .game-image {
+      width: 100%;
+      height: 200px;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .game-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+    
+    .game-card:hover .game-image img {
+      transform: scale(1.05);
+    }
+    
+    .game-age {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background-color: var(--amarillo-suave);
+      color: var(--gris-oscuro);
+      padding: 5px 15px;
+      border-radius: 50px;
+      font-family: 'Bubblegum Sans', cursive;
+      font-size: 0.9rem;
+      font-weight: 600;
+      z-index: 2;
+    }
+    
+    .game-content {
+      padding: 20px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .game-title {
+      font-family: 'Bubblegum Sans', cursive;
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      color: var(--gris-oscuro);
+    }
+    
+    .game-description {
+      font-size: 1rem;
+      color: #666;
+      margin-bottom: 20px;
+      flex-grow: 1;
+    }
+    
+    .game-skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    
+    .skill-tag {
+      background-color: var(--gris-claro);
+      color: var(--gris-oscuro);
+      padding: 5px 10px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    
+    .game-button {
+      display: inline-block;
+      padding: 10px 20px;
+      background: linear-gradient(135deg, var(--verde-menta) 0%, #66BB6A 100%);
+      color: var(--blanco);
+      border-radius: 50px;
+      font-family: 'Bubblegum Sans', cursive;
+      font-size: 1.1rem;
+      text-align: center;
+      transition: all 0.3s;
+      box-shadow: 0 5px 15px rgba(129, 199, 132, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    
+    .game-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(129, 199, 132, 0.4);
+    }
+    
+    /* Category Sections */
+    .category-section {
+      margin-bottom: 60px;
+    }
+    
+    .category-title {
+      font-family: 'Bubblegum Sans', cursive;
+      font-size: 2rem;
+      margin-bottom: 30px;
+      color: var(--gris-oscuro);
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    .category-title i {
+      color: var(--azul-cielo);
+      font-size: 1.8rem;
+    }
+    
+    /* Coming Soon */
+    .coming-soon {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 3;
+      border-radius: 20px;
+    }
+    
+    .coming-soon-text {
+      background-color: var(--amarillo-suave);
+      color: var(--gris-oscuro);
+      padding: 10px 20px;
+      border-radius: 50px;
+      font-family: 'Bubblegum Sans', cursive;
+      font-size: 1.2rem;
+      transform: rotate(-15deg);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    /* Footer */
+    footer {
+      background: linear-gradient(135deg, var(--azul-cielo) 0%, #2196F3 100%);
+      color: var(--blanco);
+      padding: 20px 0;
+      text-align: center;
+      font-size: 1rem;
+    }
+    
+    /* Responsive */
+    @media (max-width: 992px) {
+      .games-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .logo-text {
+        font-size: 2rem;
+      }
+      
+      .catalog-header h1 {
+        font-size: 2rem;
+      }
+      
+      .catalog-content {
+        padding: 30px 20px;
+      }
+      
+      .filter-tabs {
+        gap: 8px;
+      }
+      
+      .filter-tab {
+        padding: 8px 15px;
+        font-size: 1rem;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .games-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .catalog-header h1 {
+        font-size: 1.7rem;
+      }
+      
+      .catalog-header p {
+        font-size: 1rem;
+      }
+      
+      .category-title {
+        font-size: 1.7rem;
+      }
+      
+      .filter-tabs {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .filter-tab {
+        width: 100%;
+        max-width: 250px;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Elementos decorativos flotantes -->
+  <div class="floating floating-1"><i class="fa-solid fa-plus"></i></div>
+  <div class="floating floating-2"><i class="fa-solid fa-equals"></i></div>
+  <div class="floating floating-3"><i class="fa-solid fa-divide"></i></div>
+  <div class="floating floating-4"><i class="fa-solid fa-minus"></i></div>
+
+  <!-- Header simplificado (solo logo) -->
+  <header>
+    <div class="container header-container">
+      <div class="logo">
+        <a href="index.html">
+          <div class="logo-text">
+            <span>Peque</span><span>MATHS</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </header>
+  
+  <!-- Main Content -->
+  <main>
+    <div class="container">
+      <div class="catalog-container">
+        <div class="catalog-header">
+          <h1><i class="fa-solid fa-gamepad"></i> Catálogo de Juegos</h1>
+          <p>Explora nuestra colección de juegos educativos diseñados para que los niños aprendan matemáticas mientras se divierten. ¡Elige tu favorito y comienza a jugar!</p>
+        </div>
+        
+        <div class="catalog-content">
+          <!-- Filtros -->
+          <div class="filter-tabs">
+            <div class="filter-tab active" data-filter="all">
+              <i class="fa-solid fa-border-all"></i> Todos
+            </div>
+            <div class="filter-tab" data-filter="5-6">
+              <i class="fa-solid fa-child"></i> 5-6 años
+            </div>
+            <div class="filter-tab" data-filter="7-8">
+              <i class="fa-solid fa-child"></i> 7-8 años
+            </div>
+            <div class="filter-tab" data-filter="9-10">
+              <i class="fa-solid fa-child"></i> 9-10 años
+            </div>
+          </div>
+          
+          <!-- Categoría: Preescolar (5-6 años) -->
+          <div class="category-section" id="category-5-6">
+            <h2 class="category-title">
+              <i class="fa-solid fa-child"></i> Preescolar (5-6 años)
+            </h2>
+            
+            <div class="games-grid">
+              <!-- Juego 1: Encuentra el Número -->
+              <div class="game-card" data-age="5-6">
+                <div class="game-image">
+                  <img src="https://via.placeholder.com/400x200/E3F2FD/4FC3F7?text=Encuentra+el+Número" alt="Encuentra el Número">
+                  <div class="game-age">5-6 años</div>
+                </div>
+                <div class="game-content">
+                  <h3 class="game-title">Encuentra el Número</h3>
+                  <p class="game-description">Identifica visualmente números del 1 al 10 y relaciónalos con cantidades. Haz clic en la tarjeta que corresponde al número que se te pide.</p>
+                  <div class="game-skills">
+                    <span class="skill-tag">Conteo básico</span>
+                    <span class="skill-tag">Asociación número-cantidad</span>
+                    <span class="skill-tag">Observación visual</span>
+                  </div>
+                  <a href="encuentra-el-numero.html" class="game-button">
+                    <i class="fa-solid fa-play"></i> Jugar ahora
+                  </a>
+                </div>
+              </div>
+              
+              <!-- Juego 2: Formas y Colores -->
+              <div class="game-card" data-age="5-6">
+                <div class="game-image">
+                  <img src="https://via.placeholder.com/400x200/E8F5E9/81C784?text=Formas+y+Colores" alt="Formas y Colores">
+                  <div class="game-age">5-6 años</div>
+                  <div class="coming-soon">
+                    <div class="coming-soon-text">¡Próximamente!</div>
+                  </div>
+                </div>
+                <div class="game-content">
+                  <h3 class="game-title">Formas y Colores</h3>
+                  <p class="game-description">Aprende a reconocer formas geométricas básicas y colores. Arrastra cada forma a su lugar correspondiente según el color y la forma.</p>
+                  <div class="game-skills">
+                    <span class="skill-tag">Reconocimiento de formas</span>
+                    <span class="skill-tag">Colores</span>
+                    <span class="skill-tag">Coordinación</span>
+                  </div>
+                  <a href="#" class="game-button">
+                    <i class="fa-solid fa-play"></i> Jugar ahora
+                  </a>
+                </div>
+              </div>
+              
+              <!-- Juego 3: Secuencias Simples -->
+              <div class="game-card" data-age="5-6">
+                <div class="game-image">
+                  <img src="https://via.placeholder.com/400x200/FFF8E1/FFF176?text=Secuencias+Simples" alt="Secuencias Simples">
+                  <div class="game-age">5-6 años</div>
+                  <div class="coming-soon">
+                    <div class="coming-soon-text">¡Próximamente!</div>
+                  </div>
+                </div>
+                <div class="game-content">
+                  <h3 class="game-title">Secuencias Simples</h3>
+                  <p class="game-description">Completa patrones y secuencias sencillas. Observa la secuencia y elige el elemento que continúa el patrón.</p>
+                  <div class="game-skills">
+                    <span class="skill-tag">Patrones</span>
+                    <span class="skill-tag">Lógica</span>
+                    <span class="skill-tag">Atención</span>
+                  </div>
+                  <a href="#" class="game-button">
+                    <i class="fa-solid fa-play"></i> Jugar ahora
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Categoría: Primero y Segundo (7-8 años) -->
+          <div class="category-section" id="category-7-8">
+            <h2 class="category-title">
+              <i class="fa-solid fa-child"></i> Primero y Segundo (7-8 años)
+            </h2>
+            
+            <div class="games-grid">
+              <!-- Juego 1: Suma Saltarina -->
+              <div class="game-card" data-age="7-8">
+                <div class="game-image">
+                  <img src="https://via.placeholder.com/400x200/EDE7F6/9575CD?text=Suma+Saltarina" alt="Suma Saltarina">
+                  <div class="game-age">7-8 años</div>
+                </div>
+                <div class="game-content">
+                  <h3 class="game-title">Suma Saltarina</h3>
+                  <p class="game-description">Realiza sumas simples dentro del rango 0-20. Ayuda al personaje a saltar sobre la nube con la respuesta correcta para seguir avanzando.</p>
+                  <div class="game-skills">
+                    <span class="skill-tag">Agilidad mental</span>
+                    <span class="skill-tag">Sumas</span>
+                    <span class="skill-tag">Concentración</span>
+                  </div>
+                  <a href="suma-saltarina.html" class="game-button">
+                    <i class="fa-solid fa-play"></i> Jugar ahora
+                  </a>
+                </div>
+              </div>
+              
+              <!-- Juego 2: Resta Rápida -->
+              <div class="game-card" data-age="7-8">
+                <div class="game-image">
+                  <img src="https://via.placeholder.com/400x200/FFEBEE/F48FB1?text=Resta+Rápida" alt="Resta Rápida">
+                  <div class="game-age">7-8 años</div>
+                  <div class="coming-soon">
+                    <div class="coming-soon-text">¡Próximamente!</div>
+                  </div>
+                </div>
+                <div class="game-content">
+                  <h3 class="game-title">Resta Rápida</h3>
+                  <p class="game-description">Practica restas dentro del rango 0-20. Resuelve las operaciones antes de que se acabe el tiempo y gana puntos por cada respuesta correcta.</p>
+                  <div class="game-skills">
+                    <span class="skill-tag">Restas</span>
+                    <span class="skill-tag">Velocidad</span>
+                    <span class="skill-tag">Cálculo mental</span>
+                  </div>
+                  <a href="#" class="game-button">
+                    <i class="fa-solid fa-play"></i> Jugar ahora
+                  </a>
+                </div>
+              </div>
+              
+              <!-- Juego 3: Monedas y Billetes -->
+              <div class="game-card" data-age="7-8">
+                <div class="game-image">
+                  <img src="https://via.placeholder.com/400x200/FFF3E0/FF8A65?text=Monedas+y+Billetes" alt="Monedas y Billetes">
+                  <div class="game-age">7-8 años</div>
+                  <div class="coming-soon">
+                    <div class="coming-soon-text">¡Próximamente!</div>
+                  </div>
+                </div>
+                <div class="game-content">
+                  <h3 class="game-title">Monedas y Billetes</h3>
+                  <p class="game-description">Aprende a contar dinero y hacer compras sencillas. Selecciona las monedas y billetes correctos para pagar diferentes productos.</p>
+                  <div class="game-skills">
+                    <span class="skill-tag">Dinero</span>
+                    <span class="skill-tag">Sumas</span>
+                    <span class="skill-tag">Vida cotidiana</span>
+                  </div>
+                  <a href="#" class="game-button">
+                    <i class="fa-solid fa-play"></i> Jugar ahora
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Categoría: Tercero y Cuarto (9-10 años) -->
+          <div class="category-section" id="category-9-10">
+            <h2 class="category-title">
+              <i class="fa-solid fa-child"></i> Tercero y Cuarto (9-10 años)
+            </h2>
+            
+            <div class="games-grid">
+              <!-- Juego 1: Multiplicación Mágica -->
+              <div class="game-card" data-age="9-10">
+                <div class="game-image">
+                  <img src="https://via.placeholder.com/400x200/F3E5F5/9C27B0?text=Multiplicación+Mágica" alt="Multiplicación Mágica">
+                  <div class="game-age">9-10 años</div>
+                  <div class="coming-soon">
+                    <div class="coming-soon-text">¡Próximamente!</div>
+                  </div>
+                </div>
+                <div class="game-content">
+                  <h3 class="game-title">Multiplicación Mágica</h3>
+                  <p class="game-description">Practica las tablas de multiplicar del 1 al 10. Resuelve las operaciones y ayuda al mago a completar sus hechizos matemáticos.</p>
+                  <div class="game-skills">
+                    <span class="skill-tag">Multiplicación</span>
+                    <span class="skill-tag">Tablas</span>
+                    <span class="skill-tag">Memoria</span>
+                  </div>
+                  <a href="#" class="game-button">
+                    <i class="fa-solid fa-play"></i> Jugar ahora
+                  </a>
+                </div>
+              </div>
+              
+              <!-- Juego 2: División Divertida -->
+              <div class="game-card" data-age="9-10">
+                <div class="game-image">
+                  <img src="https://via.placeholder.com/400x200/E0F7FA/00BCD4?text=División+Divertida" alt="División Divertida">
+                  <div class="game-age">9-10 años</div>
+                  <div class="coming-soon">
+                    <div class="coming-soon-text">¡Próximamente!</div>
+                  </div>
+                </div>
+                <div class="game-content">
+                  <h3 class="game-title">División Divertida</h3>
+                  <p class="game-description">Aprende a dividir números de forma visual y divertida. Reparte objetos en grupos iguales y descubre el concepto de división.</p>
+                  <div class="game-skills">
+                    <span class="skill-tag">División</span>
+                    <span class="skill-tag">Reparto</span>
+                    <span class="skill-tag">Lógica</span>
+                  </div>
+                  <a href="#" class="game-button">
+                    <i class="fa-solid fa-play"></i> Jugar ahora
+                  </a>
+                </div>
+              </div>
+              
+              <!-- Juego 3: Fracciones Fractales -->
+              <div class="game-card" data-age="9-10">
+                <div class="game-image">
+                  <img src="https://via.placeholder.com/400x200/E8F5E9/4CAF50?text=Fracciones+Fractales" alt="Fracciones Fractales">
+                  <div class="game-age">9-10 años</div>
+                  <div class="coming-soon">
+                    <div class="coming-soon-text">¡Próximamente!</div>
+                  </div>
+                </div>
+                <div class="game-content">
+                  <h3 class="game-title">Fracciones Fractales</h3>
+                  <p class="game-description">Comprende el concepto de fracciones de manera visual. Identifica fracciones en diferentes representaciones y resuelve problemas sencillos.</p>
+                  <div class="game-skills">
+                    <span class="skill-tag">Fracciones</span>
+                    <span class="skill-tag">Equivalencias</span>
+                    <span class="skill-tag">Representación visual</span>
+                  </div>
+                  <a href="#" class="game-button">
+                    <i class="fa-solid fa-play"></i> Jugar ahora
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 PequeMATHS – Todos los derechos reservados</p>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // Filtrado de juegos por edad
+    document.addEventListener('DOMContentLoaded', function() {
+      const filterTabs = document.querySelectorAll('.filter-tab');
+      const gameCards = document.querySelectorAll('.game-card');
+      const categorySections = document.querySelectorAll('.category-section');
+      
+      // Función para filtrar juegos
+      function filterGames(filter) {
+        // Mostrar/ocultar categorías
+        if (filter === 'all') {
+          categorySections.forEach(section => {
+            section.style.display = 'block';
+          });
+        } else {
+          categorySections.forEach(section => {
+            if (section.id === `category-${filter}`) {
+              section.style.display = 'block';
+            } else {
+              section.style.display = 'none';
+            }
+          });
+        }
+        
+        // Actualizar clase activa en las pestañas
+        filterTabs.forEach(tab => {
+          if (tab.dataset.filter === filter) {
+            tab.classList.add('active');
+          } else {
+            tab.classList.remove('active');
+          }
+        });
+      }
+      
+      // Event listeners para las pestañas de filtro
+      filterTabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+          const filter = this.dataset.filter;
+          filterGames(filter);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

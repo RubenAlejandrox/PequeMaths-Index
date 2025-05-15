@@ -8,530 +8,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Comic+Neue:wght@400;700&family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <style>
-    :root {
-      --azul-cielo: #4FC3F7;
-      --amarillo-suave: #FFF176;
-      --verde-menta: #81C784;
-      --coral-suave: #FF8A65;
-      --blanco: #FFFFFF;
-      --gris-oscuro: #424242;
-      --gris-claro: #f5f5f5;
-      --morado-suave: #9575CD;
-      --rosa-suave: #F48FB1;
-    }
-    
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
-    body {
-      font-family: 'Comic Neue', 'Quicksand', Arial, sans-serif;
-      color: var(--gris-oscuro);
-      line-height: 1.6;
-      background-color: var(--blanco);
-      overflow-x: hidden;
-    }
-    
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-    
-    ul {
-      list-style: none;
-    }
-    
-    img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 15px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s;
-    }
-    
-    img:hover {
-      transform: scale(1.03);
-    }
-    
-    .container {
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-      position: relative;
-    }
-    
-    /* Elementos decorativos flotantes */
-    .floating {
-      position: absolute;
-      z-index: 1;
-      animation: float 6s ease-in-out infinite;
-      font-size: 2rem;
-      color: rgba(79, 195, 247, 0.3);
-    }
-    
-    .floating-1 {
-      top: 10%;
-      left: 5%;
-      animation-delay: 0s;
-    }
-    
-    .floating-2 {
-      top: 20%;
-      right: 10%;
-      animation-delay: 1s;
-      color: rgba(255, 241, 118, 0.3);
-    }
-    
-    .floating-3 {
-      bottom: 15%;
-      left: 15%;
-      animation-delay: 2s;
-      color: rgba(129, 199, 132, 0.3);
-    }
-    
-    .floating-4 {
-      bottom: 25%;
-      right: 5%;
-      animation-delay: 3s;
-      color: rgba(255, 138, 101, 0.3);
-    }
-    
-    @keyframes float {
-      0%, 100% {
-        transform: translateY(0) rotate(0deg);
-      }
-      50% {
-        transform: translateY(-20px) rotate(5deg);
-      }
-    }
-    
-    /* Header */
-    header {
-      background: linear-gradient(135deg, var(--azul-cielo) 0%, #2196F3 100%);
-      padding: 15px 0;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-    }
-    
-    .header-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    
-    .logo {
-      display: flex;
-      align-items: center;
-    }
-    
-    .logo-text {
-      font-family: 'Bubblegum Sans', cursive;
-      font-size: 2.5rem;
-      font-weight: 700;
-      text-shadow: 2px 2px 0 rgba(0,0,0,0.1);
-      letter-spacing: 1px;
-    }
-    
-    .logo-text span:first-child {
-      color: var(--amarillo-suave);
-    }
-    
-    .logo-text span:last-child {
-      color: var(--blanco);
-    }
-    
-    nav ul {
-      display: flex;
-      gap: 20px;
-    }
-    
-    nav li {
-      position: relative;
-    }
-    
-    nav a {
-      color: var(--blanco);
-      font-weight: 600;
-      font-size: 1.1rem;
-      transition: all 0.3s;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      padding: 5px 10px;
-      border-radius: 20px;
-    }
-    
-    nav a:hover {
-      color: var(--amarillo-suave);
-      background-color: rgba(255, 255, 255, 0.1);
-      transform: translateY(-3px);
-    }
-    
-    .nav-icon {
-      width: 20px;
-      height: 20px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-    }
-    
-    .mobile-menu-button {
-      display: none;
-      background: none;
-      border: none;
-      color: var(--blanco);
-      font-size: 1.5rem;
-      cursor: pointer;
-    }
-    
-    /* Hero Section */
-    .hero {
-      background: url('https://via.placeholder.com/1920x600/E3F2FD/4FC3F7?text=PequeMATHS') center/cover;
-      padding: 100px 0;
-      position: relative;
-      text-align: center;
-      color: var(--blanco);
-    }
-    
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, rgba(79, 195, 247, 0.8) 0%, rgba(33, 150, 243, 0.7) 100%);
-      z-index: 1;
-    }
-    
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    
-    .hero h1 {
-      font-family: 'Bubblegum Sans', cursive;
-      font-size: 3.5rem;
-      margin-bottom: 20px;
-      text-shadow: 3px 3px 0 rgba(0,0,0,0.1);
-      animation: pop-in 1s ease-out;
-    }
-    
-    @keyframes pop-in {
-      0% {
-        opacity: 0;
-        transform: translateY(30px) scale(0.9);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-    }
-    
-    .hero p {
-      font-size: 1.3rem;
-      margin-bottom: 30px;
-      text-shadow: 1px 1px 0 rgba(0,0,0,0.1);
-      animation: fade-in 1.5s ease-out;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    
-    @keyframes fade-in {
-      0% {
-        opacity: 0;
-      }
-      100% {
-        opacity: 1;
-      }
-    }
-    
-    /* Secciones */
-    .section {
-      padding: 80px 0;
-      position: relative;
-    }
-    
-    .section-light {
-      background-color: var(--blanco);
-    }
-    
-    .section-colored {
-      background-color: var(--gris-claro);
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .section-colored::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url('https://via.placeholder.com/100x100/81C784/81C784?text=') center/40px;
-      opacity: 0.05;
-      z-index: 0;
-    }
-    
-    .section-title {
-      font-family: 'Bubblegum Sans', cursive;
-      font-size: 2.8rem;
-      text-align: center;
-      margin-bottom: 50px;
-      color: var(--gris-oscuro);
-      position: relative;
-      z-index: 1;
-      text-shadow: 2px 2px 0 rgba(0,0,0,0.05);
-    }
-    
-    .section-title::after {
-      content: '';
-      display: block;
-      width: 80px;
-      height: 4px;
-      background-color: var(--coral-suave);
-      margin: 15px auto 0;
-      border-radius: 2px;
-    }
-    
-    .section-content {
-      display: flex;
-      align-items: center;
-      gap: 50px;
-      position: relative;
-      z-index: 1;
-    }
-    
-    .section-text {
-      flex: 1;
-    }
-    
-    .section-image {
-      flex: 1;
-      text-align: center;
-    }
-    
-    .section-subtitle {
-      font-family: 'Bubblegum Sans', cursive;
-      font-size: 1.8rem;
-      margin-bottom: 20px;
-      color: var(--azul-cielo);
-    }
-    
-    .section-description {
-      font-size: 1.1rem;
-      margin-bottom: 20px;
-      color: var(--gris-oscuro);
-    }
-    
-    .section-icon {
-      font-size: 2.5rem;
-      color: var(--coral-suave);
-      margin-bottom: 20px;
-      display: inline-block;
-    }
-    
-    /* Misión y Visión */
-    .mission-vision {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 40px;
-      position: relative;
-      z-index: 1;
-    }
-    
-    .mission-card, .vision-card {
-      background-color: var(--blanco);
-      border-radius: 20px;
-      padding: 40px 30px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-      transition: transform 0.3s;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-    }
-    
-    .mission-card:hover, .vision-card:hover {
-      transform: translateY(-10px);
-    }
-    
-    .mission-card {
-      border-top: 5px solid var(--verde-menta);
-    }
-    
-    .vision-card {
-      border-top: 5px solid var(--coral-suave);
-    }
-    
-    .card-icon {
-      font-size: 3rem;
-      margin-bottom: 20px;
-    }
-    
-    .mission-card .card-icon {
-      color: var(--verde-menta);
-    }
-    
-    .vision-card .card-icon {
-      color: var(--coral-suave);
-    }
-    
-    .card-title {
-      font-family: 'Bubblegum Sans', cursive;
-      font-size: 2rem;
-      margin-bottom: 20px;
-    }
-    
-    .mission-card .card-title {
-      color: var(--verde-menta);
-    }
-    
-    .vision-card .card-title {
-      color: var(--coral-suave);
-    }
-    
-    .card-text {
-      font-size: 1.1rem;
-      line-height: 1.7;
-      flex-grow: 1;
-    }
-    
-    /* Problemática */
-    .problem-card {
-      background-color: var(--blanco);
-      border-radius: 20px;
-      padding: 40px 30px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-      margin-top: 50px;
-      border-top: 5px solid var(--morado-suave);
-      position: relative;
-      z-index: 1;
-    }
-    
-    .problem-card .card-icon {
-      color: var(--morado-suave);
-      font-size: 3rem;
-      margin-bottom: 20px;
-    }
-    
-    .problem-card .card-title {
-      color: var(--morado-suave);
-      font-family: 'Bubblegum Sans', cursive;
-      font-size: 2rem;
-      margin-bottom: 20px;
-    }
-    
-    /* Footer */
-    footer {
-      background: linear-gradient(135deg, var(--azul-cielo) 0%, #2196F3 100%);
-      color: var(--blanco);
-      padding: 30px 0;
-      text-align: center;
-      font-size: 1rem;
-    }
-    
-    /* Responsive */
-    @media (max-width: 992px) {
-      .section-content {
-        flex-direction: column;
-      }
-      
-      .section-image {
-        order: -1;
-        margin-bottom: 30px;
-      }
-      
-      .mission-vision {
-        grid-template-columns: 1fr;
-      }
-      
-      .hero h1 {
-        font-size: 2.8rem;
-      }
-      
-      .section-title {
-        font-size: 2.3rem;
-      }
-    }
-    
-    @media (max-width: 768px) {
-      .logo-text {
-        font-size: 2rem;
-      }
-      
-      nav ul {
-        display: none;
-      }
-      
-      .mobile-menu-button {
-        display: block;
-      }
-      
-      .hero h1 {
-        font-size: 2.3rem;
-      }
-      
-      .hero p {
-        font-size: 1.1rem;
-      }
-      
-      .section-title {
-        font-size: 2rem;
-      }
-      
-      .section-subtitle {
-        font-size: 1.5rem;
-      }
-      
-      .card-title {
-        font-size: 1.7rem;
-      }
-    }
-    
-    @media (max-width: 576px) {
-      .logo-text {
-        font-size: 1.7rem;
-      }
-      
-      .hero {
-        padding: 60px 0;
-      }
-      
-      .hero h1 {
-        font-size: 2rem;
-      }
-      
-      .hero p {
-        font-size: 1rem;
-      }
-      
-      .section {
-        padding: 60px 0;
-      }
-      
-      .section-title {
-        font-size: 1.7rem;
-      }
-      
-      .section-subtitle {
-        font-size: 1.3rem;
-      }
-      
-      .card-title {
-        font-size: 1.5rem;
-      }
-    }
-  </style>
+  <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/header.css">
+    <link rel="stylesheet" href="assets/css/vision.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/footer.css">
+
 </head>
 <body>
   <!-- Elementos decorativos flotantes -->
@@ -584,89 +66,118 @@
           <div class="section-icon"><i class="fa-solid fa-lightbulb"></i></div>
           <h3 class="section-subtitle">Aprendizaje matemático divertido</h3>
           <p class="section-description">
-            PequeMATHS es una plataforma educativa diseñada para ayudar a niños de 5 a 10 años a aprender matemáticas básicas de forma divertida y efectiva, utilizando juegos de memoria como herramienta principal.
+            <strong>PequeMATHS</strong> es una plataforma educativa diseñada para ayudar a <strong>niños de 5 a 10 años</strong> a aprender <strong>matemáticas básicas</strong> de forma <strong>divertida y efectiva</strong>, utilizando <strong>juegos de memoria</strong> como herramienta principal.
           </p>
           <p class="section-description">
-            A través de actividades interactivas, los niños podrán reforzar conceptos como números, sumas, restas, formas y patrones, desarrollando habilidades matemáticas esenciales mientras se divierten.
+            A través de <strong>actividades interactivas</strong>, los niños podrán reforzar conceptos como <strong>números, sumas, restas, formas y patrones</strong>, desarrollando <strong>habilidades matemáticas esenciales</strong> mientras se divierten.
           </p>
           <p class="section-description">
-            Nuestra interfaz es colorida, amigable y fácil de usar, pensada especialmente para captar la atención de los más pequeños y adaptarse a su nivel de aprendizaje. Además, los juegos están organizados por edad y grado de dificultad, permitiendo un progreso gradual y motivador.
+            Nuestra interfaz es <strong>colorida, amigable y fácil de usar</strong>, pensada especialmente para captar la atención de los más pequeños y adaptarse a su nivel de aprendizaje. Además, los juegos están organizados por <strong>edad y grado de dificultad</strong>, permitiendo un progreso <strong>gradual y motivador</strong>.
           </p>
         </div>
         
         <div class="section-image">
-          <img src="https://via.placeholder.com/500x400/4FC3F7/FFFFFF?text=Niños+Aprendiendo" alt="Niños aprendiendo matemáticas con PequeMATHS">
+          <img src="assets/images/niños-aprendiendo.png"  alt="Niños aprendiendo matemáticas con PequeMATHS">
         </div>
       </div>
     </div>
   </section>
-  
-  <!-- Misión y Visión -->
-  <section class="section section-colored">
-    <div class="container">
-      <h2 class="section-title">Nuestra Misión y Visión</h2>
-      
-      <div class="mission-vision">
-        <div class="mission-card">
-          <div class="card-icon"><i class="fa-solid fa-bullseye"></i></div>
-          <h3 class="card-title">Misión</h3>
-          <p class="card-text">
-            Fomentar el aprendizaje de las matemáticas básicas en niños de 5 a 10 años mediante juegos de memoria interactivos, divertidos y adaptados a su edad, fortaleciendo su pensamiento lógico y habilidades cognitivas desde una etapa temprana.
-          </p>
-          <div class="card-image">
-            <img src="https://via.placeholder.com/400x300/81C784/FFFFFF?text=Nuestra+Misión" alt="Misión de PequeMATHS">
-          </div>
-        </div>
-        
-        <div class="vision-card">
-          <div class="card-icon"><i class="fa-solid fa-binoculars"></i></div>
-          <h3 class="card-title">Visión</h3>
-          <p class="card-text">
-            Ser una plataforma educativa digital reconocida por transformar el aprendizaje de las matemáticas en una experiencia lúdica y accesible para todos los niños, promoviendo el gusto por el conocimiento y el desarrollo de habilidades fundamentales para su futuro académico.
-          </p>
-          <div class="card-image">
-            <img src="https://via.placeholder.com/400x300/FF8A65/FFFFFF?text=Nuestra+Visión" alt="Visión de PequeMATHS">
-          </div>
-        </div>
-      </div>
-      
-      <div class="problem-card">
-        <div class="card-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
-        <h3 class="card-title">Problemática</h3>
-        <p class="card-text">
-          Muchos niños en edad preescolar y escolar presentan dificultades para comprender conceptos básicos de matemáticas debido a métodos tradicionales poco atractivos y falta de herramientas didácticas interactivas. Esto puede generar desinterés, frustración y bajo rendimiento escolar. Es necesario ofrecer alternativas dinámicas que combinen el juego con el aprendizaje para estimular su participación y comprensión de manera efectiva.
-        </p>
-        <div class="card-image" style="margin-top: 20px;">
-          <img src="https://via.placeholder.com/800x300/9575CD/FFFFFF?text=Problemática" alt="Problemática que resuelve PequeMATHS">
-        </div>
-      </div>
-    </div>
-  </section>
-  
-  <!-- Footer -->
-  <footer>
-    <div class="container">
-      <p>&copy; 2025 PequeMATHS – Todos los derechos reservados</p>
-    </div>
-  </footer>
 
-  <!-- Script para menú móvil -->
-  <script>
-    document.querySelector('.mobile-menu-button').addEventListener('click', function() {
-      const nav = document.querySelector('nav ul');
-      nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+
+  
+<!-- Misión y Visión -->
+<section class="section section-colored">
+  <div class="container">
+    <h2 class="section-title">Nuestra Misión y Visión</h2>
+    
+    <div class="mission-vision">
+      <div class="mission-card">
+        <div class="card-icon"><i class="fa-solid fa-bullseye"></i></div>
+        <h3 class="card-title">Misión</h3>
+        <p class="card-text" style="text-align: justify;">
+          Fomentar el <strong>aprendizaje de las matemáticas básicas</strong> en <strong>niños de 5 a 10 años</strong> mediante <strong>juegos de memoria interactivos, divertidos y adaptados a su edad</strong>, fortaleciendo su <strong>pensamiento lógico</strong> y <strong>habilidades cognitivas</strong> desde una etapa temprana.
+        </p>
+        <div class="card-image">
+          <img src="assets/images/mision.png" alt="Misión de PequeMATHS">
+        </div>
+      </div>
       
-      if (nav.style.display === 'flex') {
-        nav.style.position = 'absolute';
-        nav.style.flexDirection = 'column';
-        nav.style.backgroundColor = 'var(--azul-cielo)';
-        nav.style.top = '60px';
-        nav.style.right = '20px';
-        nav.style.padding = '20px';
-        nav.style.borderRadius = '10px';
-        nav.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.1)';
-      }
-    });
-  </script>
+      <div class="vision-card">
+        <div class="card-icon"><i class="fa-solid fa-binoculars"></i></div>
+        <h3 class="card-title">Visión</h3>
+        <p class="card-text" style="text-align: justify;">
+          Ser una <strong>plataforma educativa digital reconocida</strong> por transformar el <strong>aprendizaje de las matemáticas</strong> en una <strong>experiencia lúdica y accesible</strong> para todos los niños, promoviendo el <strong>gusto por el conocimiento</strong> y el desarrollo de <strong>habilidades fundamentales</strong> para su <strong>futuro académico</strong>.
+        </p>
+        <div class="card-image">
+          <img src="assets/images/vision.png" alt="Visión de PequeMATHS">
+        </div>
+      </div>
+    </div>
+    
+    <div class="problem-card">
+      <div class="card-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+      <h3 class="card-title">Problemática</h3>
+      <p class="card-text" style="text-align: justify;">
+        Muchos <strong>niños en edad preescolar y escolar</strong> presentan dificultades para comprender <strong>conceptos básicos de matemáticas</strong> debido a <strong>métodos tradicionales poco atractivos</strong> y <strong>falta de herramientas didácticas interactivas</strong>. Esto puede generar <strong>desinterés, frustración y bajo rendimiento escolar</strong>. Es necesario ofrecer <strong>alternativas dinámicas</strong> que combinen el <strong>juego con el aprendizaje</strong> para estimular su participación y comprensión de manera efectiva.
+      </p>
+      <div class="card-image" style="margin-top: 20px;">
+         <img src="assets/images/problematica.png" alt="Problemática que resuelve PequeMATHS">
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-column">
+        <h3>Aprende Jugando</h3>
+        <p style="text-align: justify;">
+          Plataforma educativa para niños de 5 a 10 años que aprenden matemáticas jugando. Diseñada por educadores y psicólogos infantiles para garantizar una experiencia divertida y efectiva.
+        </p>
+
+        <div class="social-icons">
+          <a href="#" class="social-icon"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" class="social-icon"><i class="fa-brands fa-twitter"></i></a>
+          <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="social-icon"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-column">
+        <h3>Enlaces rápidos</h3>
+        <ul class="footer-links">
+          <li><a href="#"><i class="fa-solid fa-home"></i> Inicio</a></li>
+          <li><a href="#"><i class="fa-solid fa-gamepad"></i> Juegos</a></li>
+          <li><a href="#"><i class="fa-solid fa-children"></i> Por Edad</a></li>
+          <li><a href="#"><i class="fa-solid fa-phone"></i> Contacto</a></li>
+          <li><a href="#"><i class="fa-solid fa-circle-info"></i> Sobre Nosotros</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h3>Contacto</h3>
+        <ul class="footer-contact">
+          <li><i class="fa-solid fa-envelope"></i> info@aprendejugando.com</li>
+          <li><i class="fa-solid fa-phone"></i> +123 456 7890</li>
+          <li><i class="fa-solid fa-location-dot"></i> Calle Educación 123, Ciudad</li>
+          <li><i class="fa-solid fa-clock"></i> Lunes a Viernes: 9am - 6pm</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p><i class="fa-regular fa-copyright"></i> 2025 Aprende Jugando – Todos los derechos reservados</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Script para menú móvil -->
+
+<script src="assets/js/menu.js"></script>
+
 </body>
 </html>

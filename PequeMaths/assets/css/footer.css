@@ -1,0 +1,129 @@
+footer {
+  background: linear-gradient(135deg, #4FC3F7 0%, #2196F3 100%);
+  color: #FFFFFF;
+  padding: 80px 0 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('https://via.placeholder.com/100x100/FFFFFF/FFFFFF?text=') center/30px;
+  opacity: 0.05;
+  z-index: 0;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 50px;
+  margin-bottom: 50px;
+  position: relative;
+  z-index: 1;
+}
+
+ .footer-column h3 {
+      font-family: 'Bubblegum Sans', cursive;
+      font-size: 1.6rem;
+      margin-bottom: 25px;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .footer-column h3::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 40px;
+      height: 3px;
+      background-color: var(--amarillo-suave);
+      border-radius: 2px;
+    }
+    
+    .footer-column p {
+      margin-bottom: 25px;
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+
+.social-icons {
+  display: flex;
+  gap: 15px;
+}
+
+.social-icon {
+  background-color: rgba(255, 255, 255, 0.2);
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+.social-icon:hover {
+  background-color: #FFFFFF;
+  color: #4FC3F7; /* azul-cielo */
+  transform: translateY(-5px);
+}
+
+.footer-links li {
+  margin-bottom: 15px;
+}
+
+.footer-links a {
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.05rem;
+  color: inherit;
+}
+
+.footer-links a:hover {
+  padding-left: 5px;
+  color: #FFF176; /* amarillo-suave */
+}
+
+.footer-links a i {
+  color: #FFF176; /* amarillo-suave */
+}
+
+.footer-contact li {
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 1.05rem;
+}
+
+.footer-contact li i {
+  color: #FFF176; /* amarillo-suave */
+  font-size: 1.2rem;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  z-index: 1;
+}
+
+.footer-bottom p {
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
